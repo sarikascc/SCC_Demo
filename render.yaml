@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: face-verification-api
+    env: python
+    buildCommand: chmod +x build.sh && ./build.sh
+    startCommand: gunicorn main_prod:app -w 2 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.16 
